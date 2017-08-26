@@ -8,7 +8,53 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
+# module.exports = (robot) ->
+#   robot.hear /寒い/i, (res) ->
+#     res.send res.random ["暖房をつけるね。"]
+# 　robot.hear /暑い/i, (res) ->
+#     res.send res.random ["冷房をつけるね。"]
+#   # robot.hear /こんにちは/i, (res) ->
+#     # res.send res.random ["こんにちは","ハロー","やぁ","Yoo"]
+#
 module.exports = (robot) ->
+#   var i;
+#
+# 　i = 10;
+# 　if (i === 1) {
+#   　window.alert('変数iは1');
+# 　}
+  robot.hear /今何度？/i, (msg) ->
+    temp = 26
+    h=30
+    a=0.99*temp - 14.3
+    K=0.81*temp + 0.01*h*a+46.3
+
+    if K > 75
+
+      msg.send msg.random [
+        "温度は #{temp}度。湿度は #{h}％。
+        冷房をつけるね。"
+      ]
+    else
+      msg.send msg.random [
+        "温度は #{temp}度。湿度は #{h}％。適温だね。"
+      ]
+
+
+  #   msg.send msg.random [
+  #     "冷房をつけるね。"
+  #   ]
+  #
+  # robot.hear /今何度？/i, (msg) ->
+  #   temp = 5
+  #   msg.send msg.random [
+  #     "温度は #{temp}度"
+  #   ]
+  #
+
+
+
+
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
